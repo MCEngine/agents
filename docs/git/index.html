@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Git Conventions - MCEngine</title>
+    <link rel="stylesheet" href="../shared.css">
+</head>
+<body data-root-path="../">
+    <div id="header-placeholder"></div>
+    <div class="sub-nav">
+        <div class="sub-nav-title">Git Conventions</div>
+    </div>
+
+    <main class="section-light">
+        <div class="container">
+            <h1>Developer Workflow & Commit Guidelines</h1>
+            
+            <h3>1. Credentials Configuration</h3>
+            <pre>
+<!-- Prioritizes: GitHub Actions Runner -> Agent Specific -> User Specific -->
+CREDENTIALS_STRUCTURE:
+  USERNAME = System.getenv('GITHUB_ACTOR')  <!-- Runner context -->
+          ?: System.getenv('AGENT_GITHUB_NAME') 
+          ?: System.getenv('USER_GITHUB_NAME')
+          
+  PASSWORD = System.getenv('GITHUB_TOKEN')  <!-- Runner context -->
+          ?: System.getenv('AGENT_GITHUB_TOKEN') 
+          ?: System.getenv('USER_GITHUB_TOKEN')</pre>
+
+            <h3>2. Branch Naming Convention (STRICT)</h3>
+            <p><strong>CRITICAL:</strong> Branches must follow the type/noun structure. Do not use verbs or Jira IDs.</p>
+            <p><strong>Format:</strong> <code>{type}/{primary-noun}</code> or <code>{type}/{primary-noun}-{secondary-noun}</code></p>
+            <p><strong>Allowed Types:</strong> <code>feat/</code>, <code>fix/</code>, <code>docs/</code>, <code>style/</code>, <code>refactor/</code>, <code>perf/</code>, <code>test/</code>, <code>build/</code>, <code>ci/</code>, <code>chore/</code> and <code>revert/</code>.</p>
+            
+            <h3>3. Commit Message Convention (STRICT)</h3>
+            <p>Commits MUST follow the Conventional Commits specification. The structure communicates intent to the consumers of the library:</p>
+            <pre>
+&lt;type&gt;[optional scope]: &lt;description&gt;
+
+[optional body]
+
+[optional footer(s)]</pre>
+
+            <ul>
+                <li><strong>fix:</strong> Patches a bug in your codebase (PATCH in Semantic Versioning).</li>
+                <li><strong>feat:</strong> Introduces a new feature to the codebase (MINOR in Semantic Versioning).</li>
+                <li><strong>BREAKING CHANGE:</strong> A commit that has a footer <code>BREAKING CHANGE:</code>, or appends a <code>!</code> after the type/scope, introduces a breaking API change (MAJOR in Semantic Versioning).</li>
+                <li><strong>Other Types:</strong> Types other than fix and feat are allowed (e.g., <code>build:</code>, <code>chore:</code>, <code>ci:</code>, <code>docs:</code>, <code>style:</code>, <code>refactor:</code>, <code>perf:</code>, <code>test:</code>).</li>
+            </ul>
+
+            <p><strong>Examples:</strong></p>
+            <pre>
+<!-- Commit message with description and breaking change footer -->
+feat: allow provided config object to extend other configs
+
+BREAKING CHANGE: `extends` key in config file is now used for extending other config files</pre>
+
+            <pre>
+<!-- Commit message with scope and ! to draw attention to breaking change -->
+feat(api)!: send an email to the customer when a product is shipped</pre>
+
+            <pre>
+<!-- Commit message with multi-paragraph body and multiple footers -->
+fix: prevent racing of requests
+
+Introduce a request id and a reference to latest request. Dismiss
+incoming responses other than from latest request.
+
+Remove timeouts which were used to mitigate the racing issue but are
+obsolete now.
+
+Reviewed-by: Z
+Refs: #123</pre>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="../shared.js"></script>
+</body>
+</html>

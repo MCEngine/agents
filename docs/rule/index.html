@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Development Rules - MCEngine</title>
+    <link rel="stylesheet" href="../shared.css">
+</head>
+<body data-root-path="../">
+    <div id="header-placeholder"></div>
+    <div class="sub-nav">
+        <div class="sub-nav-title">Core Development Rules</div>
+    </div>
+
+    <main class="section-light">
+        <div class="container">
+            <h1>Architecture & Execution</h1>
+            
+            <h3>Sub-Module Requirements</h3>
+            <ul>
+                <li><code>api</code> and <code>common</code> must ALWAYS be pure Java and use <code>CompletableFuture</code>.</li>
+                <li><code>api</code> submodule must contain ONLY interfaces.</li>
+                <li><code>common</code> submodule is strictly for getting and setting data from the DB.</li>
+            </ul>
+
+            <h3>Iteration Workflow</h3>
+            <p>The first commit after creating a branch must bump the <code>project-iteration</code> in gradle.properties (e.g., if current is 1, change it to 2: <code>{current iteration}+1</code>).</p>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="../shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+/* =========================================
+   Global Design Tokens (Apple Style)
+   ========================================= */
+:root {
+  /* Colors */
+  --color-primary: #0066cc; /* Action Blue */
+  --color-primary-active: #0071e3;
+  --color-ink: #1d1d1f;
+  --color-ink-muted: #7a7a7a;
+  --color-ink-footer: #333333;
+  --color-canvas: #ffffff;
+  --color-parchment: #f5f5f7;
+  --color-surface-black: #000000;
+  --color-hairline: #e0e0e0;
+
+  /* Typography */
+  --font-display: "SF Pro Display", system-ui, -apple-system, sans-serif;
+  --font-body: "SF Pro Text", system-ui, -apple-system, sans-serif;
+  
+  /* Spacing */
+  --spacing-sm: 12px;
+  --spacing-md: 17px;
+  --spacing-lg: 24px;
+  --spacing-section: 80px;
+
+  /* Border Radius */
+  --rounded-lg: 18px;
+  --rounded-pill: 9999px;
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+  color: var(--color-ink);
+  background-color: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
+  /* Adjusted padding: only makes room for the floating global-nav now */
+  padding-top: 100px; 
+}
+
+main { 
+  flex: 1; 
+}
+
+/* =========================================
+   Navigation
+   ========================================= */
+/* Global Top Navigation - Floating Glass Pill */
+.global-nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  
+  /* Glassmorphism Effect */
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  
+  border-radius: var(--rounded-pill);
+  height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-lg);
+  width: max-content;
+  max-width: 95vw;
+  overflow-x: auto;
+  
+  /* Hide scrollbars for cleaner look on small screens */
+  scrollbar-width: none; 
+}
+
+.global-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.global-nav a {
+  color: var(--color-ink);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.12px;
+  margin-right: 20px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.global-nav a:last-child {
+  margin-right: 0;
+}
+
+.global-nav a:hover {
+  color: var(--color-primary);
+}
+
+/* Sub Navigation (Static, centered, no background) */
+.sub-nav {
+  /* Removed position: fixed so it stays in document flow and scrolls away */
+  display: flex;
+  justify-content: center; /* Centers the title */
+  align-items: center;
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  
+  background-color: transparent;
+  border-bottom: none;
+}
+
+.sub-nav-title {
+  font-family: var(--font-display);
+  font-size: 34px; /* Made bigger */
+  font-weight: 700; /* Made bolder */
+  letter-spacing: 0.231px;
+}
+
+/* =========================================
+   Footer
+   ========================================= */
+.global-footer {
+  background-color: var(--color-parchment);
+  color: var(--color-ink-footer);
+  padding: 64px var(--spacing-lg);
+  font-size: 12px;
+  text-align: center;
+  border-top: 1px solid var(--color-hairline);
+}
+
+/* =========================================
+   Typography & Content Layout
+   ========================================= */
+h1 { 
+  font-family: var(--font-display); 
+  font-size: 56px; 
+  font-weight: 600; 
+  line-height: 1.07; 
+  letter-spacing: -0.28px; 
+  margin-bottom: var(--spacing-md); 
+}
+
+h2 { 
+  font-family: var(--font-display); 
+  font-size: 40px; 
+  font-weight: 600; 
+  line-height: 1.1; 
+  margin-bottom: var(--spacing-sm); 
+}
+
+h3 { 
+  font-family: var(--font-display); 
+  font-size: 28px; 
+  font-weight: 400; 
+  margin-top: var(--spacing-lg); 
+  margin-bottom: var(--spacing-sm); 
+}
+
+p { 
+  margin-bottom: var(--spacing-md); 
+}
+
+ul { 
+  margin-left: var(--spacing-lg); 
+  margin-bottom: var(--spacing-lg); 
+}
+
+li { 
+  margin-bottom: 8px; 
+}
+
+pre {
+  background-color: var(--color-parchment);
+  padding: var(--spacing-lg);
+  border-radius: var(--rounded-lg);
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 14px;
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--color-hairline);
+}
+
+/* =========================================
+   Structural Classes
+   ========================================= */
+.section-light { 
+  background-color: var(--color-canvas); 
+  padding: var(--spacing-section) var(--spacing-lg); 
+}
+
+.container { 
+  max-width: 980px; 
+  margin: 0 auto; 
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+/* =========================================
+   Cards
+   ========================================= */
+.card {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--spacing-lg);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.card:hover { 
+  transform: scale(0.98); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.card-title { 
+  font-weight: 600; 
+  font-size: 21px; 
+  margin-bottom: 8px; 
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Versioning - MCEngine</title>
+    <link rel="stylesheet" href="../shared.css">
+</head>
+<body data-root-path="../">
+    <div id="header-placeholder"></div>
+    <div class="sub-nav">
+        <div class="sub-nav-title">Versioning Specification</div>
+    </div>
+
+    <main class="section-light">
+        <div class="container">
+            <h1>Release & CI Versioning</h1>
+            
+            <h3>Format Architecture</h3>
+            <ul>
+                <li>Use <code>2026.m.m-build.${build number}</code> for CI builds.</li>
+                <li>Use <code>2026.m.m-{iteration 1...n}</code> for test versions (stable).</li>
+                <li>Use <code>2026.m.m</code> for release versions.</li>
+            </ul>
+
+            <h3>Timeline Examples</h3>
+            <p>Releases update iteratively per month. When approaching the end of the year, the year tag must be advanced:</p>
+            <ul>
+                <li><code>2026.1.0</code> &rarr; October 2026</li>
+                <li><code>2026.1.1</code> &rarr; November 2026</li>
+                <li><code>2026.1.2</code> &rarr; December 2026 <strong>(CRITICAL: In December, the project must use/prepare the New Year format for upcoming releases)</strong>.</li>
+            </ul>
+
+            <h3>gradle.properties Standard</h3>
+            <p>It must ALWAYS provide these 5 variables (values shown are examples):</p>
+            <pre>
+# --- Project Identity ---
+project-group=io.github.mcengine
+git-org-name=MCEngine
+git-org-repository=repo
+
+# --- Versioning ---
+project-version=2026.1.2
+project-iteration=1</pre>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="../shared.js"></script>
+</body>
+</html>

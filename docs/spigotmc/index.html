@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpigotMC Rules - MCEngine</title>
+    <link rel="stylesheet" href="../shared.css">
+</head>
+<body data-root-path="../">
+    <div id="header-placeholder"></div>
+    <div class="sub-nav">
+        <div class="sub-nav-title">SpigotMC Development Standards</div>
+    </div>
+
+    <main class="section-light">
+        <div class="container">
+            <h1>SpigotMC Core Requirements</h1>
+            <p>SpigotMC development within MCEngine focuses on high compatibility and legacy support for our pure Java sub-modules.</p>
+            
+            <h3>1. Legacy API & Translation</h3>
+            <ul>
+                <li><strong>Message Handling:</strong> Must ALWAYS use <code>Component.translatable()</code> for player-facing messages to support localization.</li>
+                <li><strong>Fallback Strategy:</strong> Always provide a fallback English string within the translatable component.</li>
+                <li><strong>Console Logs:</strong> System logs and console outputs must remain in pure English for standardized debugging across environments.</li>
+            </ul>
+
+            <h3>2. Threading & Performance</h3>
+            <ul>
+                <li><strong>Main Thread Safety:</strong> Never perform blocking operations (I/O, Database, Web) on the Server Main Thread.</li>
+                <li><strong>Async Handling:</strong> Use <code>CompletableFuture</code> for all data retrieval tasks, ensuring the <code>common</code> module remains non-blocking.</li>
+                <li><strong>Task Scheduling:</strong> Utilize the Spigot Scheduler for any logic that requires interaction with the Minecraft World API (e.g., Teleportation, Entity spawning).</li>
+            </ul>
+
+            <h3>3. Project Structure Constraints</h3>
+            <p>As per global <strong>Rule</strong> standards:</p>
+            <ul>
+                <li>The <code>api</code> sub-module must consist solely of Interfaces to ensure modularity.</li>
+                <li>The <code>common</code> sub-module must only handle Data Access (Set/Get) from databases.</li>
+            </ul>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="../shared.js"></script>
+</body>
+</html>
