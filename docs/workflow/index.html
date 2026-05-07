@@ -20,6 +20,16 @@
                 <li>Before starting any project or making modifications, verify the current branch status.</li>
                 <li>If the current branch is <code>master</code>, a new branch following the Git naming convention must be checked out immediately.</li>
             </ul>
+
+            <h3>Local State Management (.agents/)</h3>
+            <p><strong>CRITICAL:</strong> Store all your active work, session context, and task summaries in the local <code>.agents/</code> directory.</p>
+            <ul>
+                <li><strong>Gitignore Verification:</strong> When starting work, you must check the <code>.gitignore</code> file at the root directory. If <code>.agents/</code> is not present, you must write it into the file immediately to prevent accidental commits.</li>
+                <li><strong>Central Index:</strong> Maintain <code>.agents/README.md</code> as the central index and routing hub.</li>
+                <li><strong>File Allocation:</strong> Do not dump all information into a single file. Create specific <code>.md</code> files for related topics, tasks, or components (e.g., <code>.agents/task-database.md</code>, <code>.agents/bug-reports.md</code>).</li>
+                <li><strong>Index Updates:</strong> Always update <code>.agents/README.md</code> with a brief description of what each specific file contains.</li>
+                <li><strong>Context Retrieval:</strong> When starting a new session or task, read <code>.agents/README.md</code> first to locate the context, then read only the specific <code>.md</code> files relevant to your current objective.</li>
+            </ul>
         </div>
     </main>
 
